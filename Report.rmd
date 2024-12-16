@@ -1,0 +1,42 @@
+---
+title: "DATA_550"
+author: "Ziqi Ai"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r plot_correlation, echo=FALSE, message=FALSE, warning=FALSE}
+# Load necessary packages
+library(ggplot2)
+library(dplyr)
+library(here)
+
+# Define the path to the dataset
+path_to_data <- here::here("Data", "diabetes_012_health_indicators_BRFSS2015.csv")
+
+# Load the data
+diabetes_data <- read.csv(path_to_data, header = TRUE)
+
+# Display the first few rows of the dataset to confirm it loaded properly
+head(diabetes_data)
+
+# Ensure BMI and Diabetes_012 columns exist
+if (!"BMI" %in% colnames(diabetes_data) || !"Diabetes_012" %in% colnames(diabetes_data)) {
+  stop("BMI or Diabetes_012 column not found in the dataset.")
+}
+
+# Create and display the boxplot
+p <- ggplot(diabetes_data, aes(x = as.factor(Diabetes_012), y = BMI, fill = as.factor(Diabetes_012))) +
+  geom_boxplot() +
+  ggtitle("BMI Distribution by Diabetes Status") +
+  xlab("Diabetes Status (0: No Diabetes, 1: Prediabetes, 2: Diabetes)") +
+  ylab("BMI") +
+  scale_fill_discrete(name = "Diabetes Status") +
+  theme_minimal()
+
+print(p)  # Display the plot in the report
+```
