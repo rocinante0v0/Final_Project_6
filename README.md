@@ -43,6 +43,11 @@ The project generates a boxplot summarizing the BMI distribution by diabetes sta
 ### **Option 2: Using Docker**
 
 #### **Build Docker Image**
+Pull the image from docker hub
+```bash
+docker pull rocinante0v0/data550_report:latest
+```
+
 To build the Docker image for this project, run the following command:
 ```bash
 docker build -t rocinante0v0/data550_report:latest .
