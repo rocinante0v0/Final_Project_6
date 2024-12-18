@@ -9,7 +9,7 @@ build:
 
 # Run the Docker container and mount the local Report folder
 run:
-	docker run --rm -v $$(PWD)/Report:/project/Report $$(IMAGE_NAME)
+	docker run --rm -v $$(PWD)/Report:/project/Report $(IMAGE_NAME)
 
 # Clean generated reports
 clean:
